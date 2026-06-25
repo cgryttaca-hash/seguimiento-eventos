@@ -1,3 +1,6 @@
+if(localStorage.getItem('sesionActiva') !== 'true'){
+    window.location.href = 'login.html';
+}
 let dataRows = [];
 let currentFilter = 'Actuales';
 let selectedCompany = null;
