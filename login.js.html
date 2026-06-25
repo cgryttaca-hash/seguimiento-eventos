@@ -1,0 +1,19 @@
+document.getElementById('btnLogin').addEventListener('click', () => {
+
+    const usuario = document.getElementById('usuario').value;
+    const clave = document.getElementById('clave').value;
+
+    if(usuario === 'admin' && clave === '123456'){
+
+        localStorage.setItem('sesionActiva','true');
+        localStorage.setItem('usuario',usuario);
+
+        window.location.href = 'index.html';
+
+    }else{
+
+        alert('Usuario o contraseña incorrectos');
+
+    }
+
+});
