@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seguimiento de Eventos - Definitivo</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div id="toastContainer" class="toast-container"></div>
+<div class="container">
+  <header>
+    <div><h1>Eventos Minuta</h1></div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Buscar empresa o salón…" />
+      <input id="dateFrom" type="date" />
+      <input id="dateTo" type="date" />
+      <label style="display:flex;align-items:center;gap:6px;padding:0 8px;font-size:14px;"><input type="checkbox" id="hideNoFood" checked> Ocultar "SIN ALIMENTACION"</label>
+      <button id="resetBtn" class="btn-secondary">Limpiar</button>
+      <input id="fileInput" type="file" accept=".xlsx,.xls,.csv" style="display:none" />
+      <button id="btnLoad" class="btn">Cargar archivo</button>
+      <button onclick="window.print()" class="btn-secondary">🖨 Imprimir</button>
+      <audio id="alertSound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" preload="auto">
+    </div>
+  </header>
+
+  <div id="dashboard" class="dashboard"></div>
+
+  <div class="legend">
+    <div class="chip active" data-filter="Actuales">Eventos actuales</div>
+    <div class="chip" data-filter="Segundo piso">Segundo piso</div>
+    <div class="chip" data-filter="Tercer piso">Tercer piso</div>
+    <div class="chip" data-filter="Todos">Todos</div>
+  </div>
+
+  <div id="graficaAviso" style="display:none; padding:8px; background:#fff3cd; color:#856404; border:1px solid #ffeeba; border-radius:6px; margin:10px 0;">
+    ⚠️ Nota: Los eventos de Tercer piso no se incluyen en estas gráficas.
+  </div>
+
+  <div id="chartContainer" class="grid">
+    <div class="chart-box"><canvas id="chartMes"></canvas></div>
+    <div class="chart-box"><canvas id="chartAnio"></canvas></div>
+    <div class="chart-box"><canvas id="chartEstado"></canvas></div>
+    <div class="chart-box">
+      <h4 style="margin:0 0 6px 0;font-size:0.95rem"></h4>
+      <ul id="empresasList" class="top-empresas"></ul>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <table id="dataTable">
+      <caption id="captionFiltro"></caption>
+      <thead>
+        <tr>
+          <th>FECHA</th>
+          <th>ESCENARIO ASIGNADO</th>
+          <th>HORARIO DEL EVENTO</th>
+          <th>NOMBRE DE LA EMPRESA</th>
+          <th>CANTIDAD DE PERSONAS</th>
+          <th>HORARIO AYB</th>
+          <th>DESCRIPCION ALIMENTACION</th>
+          <th>ACOMODACION</th>
+          <th>MEDIO DE PAGO</th>
+          <th>OBSERVACION</th>
+          <th>ESTADO</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Librerías externas -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- Código de la aplicación -->
+<script src="app.js"></script>
+</body>
+</html>
